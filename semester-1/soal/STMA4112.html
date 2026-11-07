@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Latihan STMA4112 Matematika Dasar</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mut:#5f6b7a;--line:#d9dee5;--pri:#0b5cad;--prib:#e8f1fb;--ok:#17803d;--bad:#c02b2b;--mid:#a86b00;--okb:#e6f5ea;--badb:#fbe9e9;--warn:#fff4d6;--track:#e7ebf0}
+@media (prefers-color-scheme:dark){:root{--bg:#12161c;--card:#1b222b;--ink:#e8ecf1;--mut:#a3aebb;--line:#333d49;--pri:#6db1f5;--prib:#1a2a3c;--ok:#5fd38a;--bad:#ff8a8a;--mid:#f0b54a;--okb:#16321f;--badb:#3a1c1c;--warn:#3a321a;--track:#2a333f}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:auto;padding:16px 16px 48px}h1{font-size:1.3rem;margin:.2rem 0}h2{font-size:1.05rem;margin:0 0 .5rem}.mut{color:var(--mut);font-size:.9rem}
+a{color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+button,select,textarea{font:inherit;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;min-height:44px}
+button:hover{border-color:var(--pri)}button:disabled{cursor:default}
+textarea{width:100%;margin:8px 0;background:var(--bg);cursor:text;min-height:96px}
+button.pri{background:var(--pri);color:#fff;border-color:var(--pri);font-weight:600}@media (prefers-color-scheme:dark){button.pri{color:#0d1a26}}
+button:focus-visible,select:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{font-size:.78rem;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut)}
+.bar{height:8px;background:var(--track);border-radius:9px;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--pri);border-radius:9px;transition:width .3s}
+.big{font-size:2.6rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.85rem;font-weight:600}
+.c-ok{background:var(--okb);color:var(--ok)}.c-mid{background:var(--warn);color:var(--mid)}.c-bad{background:var(--badb);color:var(--bad)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line);border-radius:8px;padding:8px 10px}.stat b{display:block;font-size:1.2rem;font-variant-numeric:tabular-nums}.stat span{font-size:.8rem;color:var(--mut)}
+.cta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}.cta button{flex:1 1 200px}
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media (max-width:560px){.modes{grid-template-columns:1fr}}
+.mode{display:flex;flex-direction:column;gap:4px;text-align:left;padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.mode b{font-size:1rem}.mode span{font-size:.86rem;color:var(--mut)}.mode .row{margin-top:auto;padding-top:8px}
+.mode.wide{grid-column:1/-1}
+.sesi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}@media (max-width:560px){.sesi-grid{grid-template-columns:1fr}}
+.mini{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:6px;margin-top:6px}.mini .stat{padding:6px 8px}
+.sesi{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:8px;min-height:0}
+.sesi .lbl{display:flex;justify-content:space-between;gap:8px;font-size:.88rem}
+details>summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px}
+details>summary::-webkit-details-marker{display:none}details>summary::after{content:'▾';color:var(--mut)}details[open]>summary::after{content:'▴'}
+details>summary+*{margin-top:10px}
+.chart{display:flex;align-items:flex-end;gap:6px;height:110px;margin-top:8px;border-bottom:1px solid var(--line)}
+.chart div{flex:1;max-width:46px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:.75rem;color:var(--mut)}
+.chart i{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--pri)}
+/* Layar soal */
+.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.qtext{font-size:1.08rem;font-weight:600;margin:10px 0 6px}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;margin:8px 0;padding:10px 12px;line-height:1.45}
+.opt .key{flex:0 0 28px;height:28px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--mut)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.ok .key{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.bad{background:var(--badb);border-color:var(--bad)}.opt.bad .key{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt:disabled:not(.ok):not(.bad){opacity:.6}
+.fb{border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.95rem}.fb.ok{background:var(--okb)}.fb.bad{background:var(--badb)}
+.note{background:var(--warn);border-radius:8px;padding:8px 10px;margin-top:8px;font-size:.92rem}
+.timer{font-variant-numeric:tabular-nums;font-weight:700}.timer.low{color:var(--bad)}
+.hint{font-size:.8rem;color:var(--mut);margin-top:10px}
+@media (hover:none){.hint{display:none}}
+.foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+.danger{color:var(--bad)}
+.sr{position:absolute;left:-9999px}
+</style></head><body><main>
+<a href="../index.html" class="mut">← Semua mata kuliah</a>
+<h1>Latihan STMA4112 Matematika Dasar</h1><div class="mut">Soal latihan tidak resmi · bukan bocoran soal ujian</div>
+<div id="app"></div><div id="live" class="sr" aria-live="polite"></div></main>
+<script>
+const D={"kode": "STMA4112", "q": [{"g": "Sesi 1", "src": "Latihan", "q": "A={1,2,3}, B={2,3,4}. A−B adalah ...", "a": ["{1}", "{4}", "{2,3}", "{1,4}"], "k": 0, "w": "", "id": "792fe49bb4"}, {"g": "Sesi 1", "src": "Latihan", "q": "A={1,2,3}, B={2,3,4}. Selisih simetri A dan B adalah ...", "a": ["{2,3}", "{1,4}", "{1,2,3,4}", "{1}"], "k": 1, "w": "", "id": "c527d2093d"}, {"g": "Sesi 1", "src": "Latihan", "q": "Banyak anggota himpunan kuasa dari himpunan 3 anggota adalah ...", "a": ["3", "6", "8", "9"], "k": 2, "w": "2³ = 8.", "id": "8cf596d50c"}, {"g": "Sesi 1", "src": "Latihan", "q": "Jika n(A)=2 dan n(B)=3, banyak anggota A×B adalah ...", "a": ["5", "6", "8", "9"], "k": 1, "w": "", "id": "35df508edd"}, {"g": "Sesi 1", "src": "Latihan", "q": "A={1,2,3,5,7}, B={0,1,2,3,5}, C={0,1,3,4,6,7,8}. Hasil (A−B)∩C adalah ...", "a": ["{7}", "{1,3}", "{0,7}", "∅"], "k": 0, "w": "A−B={7}, dan 7 ada di C.", "id": "724bf2fd39"}, {"g": "Sesi 1", "src": "Latihan", "q": "B={0,1,2,3,5}, C={0,1,3,4,6,7,8}. Selisih simetri B dan C adalah ...", "a": ["{0,1,3}", "{2,4,5,6,7,8}", "{0,1,2,3,4,5,6,7,8}", "{2,5}"], "k": 1, "w": "Gabungan dikurangi irisan {0,1,3}.", "id": "211ce0a66a"}, {"g": "Sesi 1", "src": "Latihan", "q": "Selisih simetri himpunan disebut juga ...", "a": ["Penjumlahan himpunan", "Perkalian Kartesius", "Komplemen", "Himpunan kuasa"], "k": 0, "w": "", "id": "aba2451fbf"}, {"g": "Sesi 2", "src": "Latihan", "q": "Bilangan berikut yang irasional adalah ...", "a": ["0,333…", "√2", "1/4", "−5"], "k": 1, "w": "", "id": "b835a952cc"}, {"g": "Sesi 2", "src": "Latihan", "q": "Satu-satunya bilangan prima genap adalah ...", "a": ["0", "1", "2", "4"], "k": 2, "w": "", "id": "ee0b737167"}, {"g": "Sesi 2", "src": "Latihan", "q": "Hasil (2+3i)(1−i) adalah ...", "a": ["5+i", "−1+i", "5−i", "2−3i"], "k": 0, "w": "2−2i+3i−3i² = 5+i.", "id": "5029cf2860"}, {"g": "Sesi 2", "src": "Latihan", "q": "{x | −5 ≤ x < 15, x real} dalam bentuk selang adalah ...", "a": ["(−5,15)", "[−5,15]", "[−5,15)", "(−5,15]"], "k": 2, "w": "≤ memakai kurung siku, < memakai kurung biasa.", "id": "cff7fde463"}, {"g": "Sesi 2", "src": "Latihan", "q": "{x | x ≤ −1, x real} dalam bentuk selang adalah ...", "a": ["(−∞,−1]", "(−∞,−1)", "[−1,∞)", "(−1,∞)"], "k": 0, "w": "", "id": "151d3895dd"}, {"g": "Sesi 2", "src": "Latihan", "q": "Hubungan himpunan bilangan yang benar adalah ...", "a": ["N ⊂ Cacah ⊂ Z ⊂ R", "Z ⊂ N ⊂ Cacah ⊂ R", "R ⊂ Z ⊂ Cacah ⊂ N", "Cacah ⊂ N ⊂ Z ⊂ R"], "k": 0, "w": "", "id": "ae59f2fc1b"}, {"g": "Sesi 3", "src": "Latihan", "q": "Implikasi p⇒q bernilai salah jika ...", "a": ["p benar, q salah", "p salah, q benar", "p salah, q salah", "p benar, q benar"], "k": 0, "w": "", "id": "8907f2f194"}, {"g": "Sesi 3", "src": "Latihan", "q": "Biimplikasi p⇔q bernilai benar jika ...", "a": ["Nilai p dan q sama", "Hanya p benar", "Hanya q benar", "Nilai p dan q berbeda"], "k": 0, "w": "", "id": "38cacb0d44"}, {"g": "Sesi 3", "src": "Latihan", "q": "Negasi dari \"Semua mahasiswa rajin\" adalah ...", "a": ["Semua mahasiswa tidak rajin", "Ada mahasiswa yang tidak rajin", "Ada mahasiswa yang rajin", "Tidak ada mahasiswa"], "k": 1, "w": "", "id": "cd424a137f"}, {"g": "Sesi 3", "src": "Latihan", "q": "Kontraposisi dari p⇒q adalah ...", "a": ["q⇒p", "~p⇒~q", "~q⇒~p", "p⇒~q"], "k": 2, "w": "", "id": "5d88878f69"}, {"g": "Sesi 3", "src": "Latihan", "q": "Pernyataan yang setara dengan ~(p∧q) adalah ...", "a": ["~p∧~q", "~p∨~q", "p∨q", "p∧~q"], "k": 1, "w": "Hukum De Morgan.", "id": "5c80cc71cd"}, {"g": "Sesi 3", "src": "Latihan", "q": "p⇒q, ~q, maka ~p. Ini disebut ...", "a": ["Modus ponens", "Modus tollens", "Silogisme", "Kontradiksi"], "k": 1, "w": "", "id": "ea80879e18"}, {"g": "Sesi 3", "src": "Latihan", "q": "Pernyataan p∨~p selalu benar, sehingga disebut ...", "a": ["Tautologi", "Kontradiksi", "Kontingensi", "Kuantor"], "k": 0, "w": "", "id": "60634911a8"}, {"g": "Sesi 3", "src": "Latihan", "q": "H={−5,…,5}. Pernyataan \"untuk setiap x di H ada y di H sehingga x+y=0\" bernilai ...", "a": ["Benar", "Salah", "Bukan proposisi", "Tidak dapat ditentukan"], "k": 0, "w": "Setiap x punya lawan −x di H.", "id": "ce1497c064"}, {"g": "Sesi 3", "src": "Latihan", "q": "Argumen: jika hujan deras maka banjir; tidak hujan deras; jadi tidak banjir. Argumen ini ...", "a": ["Sah, modus ponens", "Sah, modus tollens", "Tidak sah", "Sah, silogisme"], "k": 2, "w": "[(p⇒q)∧~p]⇒~q salah saat p salah dan q benar, jadi bukan tautologi.", "id": "8c025a5ffc"}, {"g": "Sesi 3", "src": "Latihan", "q": "Konvers dari P⇒Q adalah ...", "a": ["Q⇒P", "¬P⇒¬Q", "¬Q⇒¬P", "P⇒¬Q"], "k": 0, "w": "", "id": "cec7cc81c2"}, {"g": "Sesi 3", "src": "Latihan", "q": "Invers dari P⇒Q adalah ...", "a": ["Q⇒P", "¬P⇒¬Q", "¬Q⇒¬P", "¬P⇒Q"], "k": 1, "w": "", "id": "515de50211"}, {"g": "Sesi 3", "src": "Latihan", "q": "Suatu argumen dinyatakan sah jika implikasinya merupakan ...", "a": ["Tautologi", "Kontradiksi", "Negasi", "Disjungsi"], "k": 0, "w": "", "id": "f6b8fc827a"}, {"g": "Sesi 4", "src": "Latihan", "q": "Himpunan penyelesaian |2x−1| < 5 adalah ...", "a": ["−2 < x < 3", "x < −2 atau x > 3", "−3 < x < 2", "x < 3"], "k": 0, "w": "", "id": "4ab0f7640b"}, {"g": "Sesi 4", "src": "Latihan", "q": "Himpunan penyelesaian 2x−3 ≤ 7 adalah ...", "a": ["x ≤ 5", "x ≥ 5", "x ≤ 2", "x ≥ 2"], "k": 0, "w": "", "id": "22ad10168d"}, {"g": "Sesi 4", "src": "Latihan", "q": "Supremum dari interval terbuka (0,1) adalah ...", "a": ["0", "1/2", "1", "Tidak ada"], "k": 2, "w": "Batas atas terkecil; tidak harus anggota.", "id": "a7fbf2ebf6"}, {"g": "Sesi 4", "src": "Latihan", "q": "Barisan aₙ = 1/n bersifat ...", "a": ["Naik dan tak terbatas", "Turun dan terbatas", "Naik dan terbatas", "Tidak monoton"], "k": 1, "w": "", "id": "ed905950ba"}, {"g": "Sesi 4", "src": "Latihan", "q": "Himpunan H=[−5,15] bukan medan karena ...", "a": ["Tidak memuat 0", "Tidak memuat 1", "Tidak tertutup: 10+10=20 di luar H", "Tidak memuat bilangan negatif"], "k": 2, "w": "Identitas 0 dan 1 ada, tetapi sifat tertutup gagal.", "id": "b5cb45ae6d"}, {"g": "Sesi 4", "src": "Latihan", "q": "Penyelesaian 8x+7 ≥ 5x−2 adalah ...", "a": ["x ≥ −3", "x ≤ −3", "x ≥ 3", "x ≤ 3"], "k": 0, "w": "3x ≥ −9.", "id": "3aeb265e77"}, {"g": "Sesi 4", "src": "Latihan", "q": "Penyelesaian 15 ≥ 3x+6 > 9 adalah ...", "a": ["1 < x ≤ 3", "1 ≤ x < 3", "3 < x ≤ 5", "−1 < x ≤ 3"], "k": 0, "w": "Kurangi 6, lalu bagi 3.", "id": "e4f56c5f9a"}, {"g": "Sesi 4", "src": "Latihan", "q": "Penyelesaian |5x−3| = 12 adalah ...", "a": ["x=3 saja", "x=3 atau x=−9/5", "x=−3 atau x=9/5", "x=−9/5 saja"], "k": 1, "w": "", "id": "6ff5a75337"}, {"g": "Sesi 4", "src": "Latihan", "q": "Penyelesaian |3x+12| < 6 adalah ...", "a": ["−6 < x < −2", "x < −6 atau x > −2", "−2 < x < 6", "2 < x < 6"], "k": 0, "w": "", "id": "18f59a3e80"}, {"g": "Sesi 4", "src": "Latihan", "q": "Unsur identitas penjumlahan bilangan real adalah ...", "a": ["0", "1", "−1", "x"], "k": 0, "w": "", "id": "514222f02a"}, {"g": "Sesi 5", "src": "Latihan", "q": "Relasi R pada {1,2,3}: R={(1,1),(2,2),(3,3),(1,2),(2,1)} bersifat ...", "a": ["Refleksif saja", "Simetris saja", "Transitif saja", "Ekuivalen"], "k": 3, "w": "Refleksif, simetris, dan transitif.", "id": "97f67920ec"}, {"g": "Sesi 5", "src": "Latihan", "q": "Relasi < pada bilangan bulat bersifat ...", "a": ["Refleksif", "Simetris", "Transitif", "Ekuivalen"], "k": 2, "w": "", "id": "0728eb688d"}, {"g": "Sesi 5", "src": "Latihan", "q": "A={0,1,2,3}, B={−3,−1,3,6}. Banyak pasangan (a,b) dengan a·b ≤ 0 adalah ...", "a": ["8", "10", "12", "6"], "k": 1, "w": "a=0 memberi 4 pasang; a=1,2,3 masing-masing 2 pasang.", "id": "d159cec6b6"}, {"g": "Sesi 5", "src": "Latihan", "q": "A={0,1,2,3}, B={−3,−1,3,6}. Banyak pasangan (a,b) dengan a > b adalah ...", "a": ["8", "9", "10", "6"], "k": 0, "w": "Setiap a hanya lebih besar dari −3 dan −1.", "id": "e4bc60b77c"}, {"g": "Sesi 5", "src": "Latihan", "q": "Graf memuat panah 2→1 dan 1→3 tetapi tidak ada 2→3. Relasinya pasti tidak ...", "a": ["Refleksif", "Simetris", "Transitif", "Berhingga"], "k": 2, "w": "", "id": "2b2e34bf61"}, {"g": "Sesi 5", "src": "Latihan", "q": "Graf yang sisinya memiliki arah disebut ...", "a": ["Diagraf", "Pohon", "Lingkaran", "Himpunan"], "k": 0, "w": "", "id": "5d877f82f4"}, {"g": "Sesi 6", "src": "Latihan", "q": "Domain f(x)=√(x−2) pada bilangan real adalah ...", "a": ["x ≥ 2", "x > 2", "x ≤ 2", "Semua real"], "k": 0, "w": "", "id": "4cc42e1f93"}, {"g": "Sesi 6", "src": "Latihan", "q": "Domain f(x)=1/(x−4) adalah ...", "a": ["x ≠ 4", "x > 4", "x = 4", "x ≠ 0"], "k": 0, "w": "", "id": "92e2cecd5d"}, {"g": "Sesi 6", "src": "Latihan", "q": "Fungsi berikut yang genap adalah ...", "a": ["f(x)=x³", "f(x)=x²", "f(x)=x+1", "f(x)=2x"], "k": 1, "w": "f(−x)=f(x).", "id": "03ce1e16f9"}, {"g": "Sesi 6", "src": "Latihan", "q": "f(x)=x+1, g(x)=x². (g∘f)(x) adalah ...", "a": ["x²+1", "(x+1)²", "x²+x", "x+1"], "k": 1, "w": "", "id": "8868c56e09"}, {"g": "Sesi 6", "src": "Latihan", "q": "Invers f(x)=2x+3 adalah ...", "a": ["(x−3)/2", "(x+3)/2", "2x−3", "x/2+3"], "k": 0, "w": "", "id": "9396915299"}, {"g": "Sesi 6", "src": "Latihan", "q": "f(x)=3x²+7, g(x)=√(2x−1). (f∘g)(x) adalah ...", "a": ["6x+4", "6x−3", "3x²+7", "√(6x+4)"], "k": 0, "w": "3(2x−1)+7.", "id": "06383610d5"}, {"g": "Sesi 6", "src": "Latihan", "q": "Dengan f dan g yang sama, domain (f∘g) adalah ...", "a": ["Semua real", "x ≥ 1/2", "x > 1/2", "x ≥ 0"], "k": 1, "w": "Domain tetap mengikuti g, meskipun hasilnya 6x+4.", "id": "42af675dcc"}, {"g": "Sesi 6", "src": "Latihan", "q": "Invers g(x)=√(2x−1) adalah ...", "a": ["(x²+1)/2, x ≥ 0", "(x²−1)/2", "√(2x+1)", "2x²+1"], "k": 0, "w": "", "id": "f3bc6f96c5"}, {"g": "Sesi 6", "src": "Latihan", "q": "Titik puncak y=x²−3x+2 berada di ...", "a": ["(1,5; −0,25)", "(3; 2)", "(−1,5; −0,25)", "(0; 2)"], "k": 0, "w": "x=−b/2a=1,5.", "id": "b1a679e17f"}, {"g": "Sesi 6", "src": "Latihan", "q": "Syarat suatu relasi disebut fungsi adalah setiap anggota domain ...", "a": ["Berpasangan dengan tepat satu anggota kodomain", "Boleh tanpa pasangan", "Harus punya dua pasangan", "Berpasangan dengan semua anggota kodomain"], "k": 0, "w": "", "id": "e62e3302e1"}, {"g": "Sesi 6", "src": "Latihan", "q": "Pada y = f(x), x disebut variabel ...", "a": ["Terikat", "Bebas", "Tetap", "Kardinal"], "k": 1, "w": "", "id": "3a15d9368c"}, {"g": "Sesi 7", "src": "Latihan", "q": "Himpunan yang berkorespondensi satu-satu dengan bilangan asli disebut ...", "a": ["Terhingga", "Terbilang", "Kosong", "Tak terhitung"], "k": 1, "w": "Kardinalitas ℵ0.", "id": "6a5b91aa2b"}, {"g": "Sesi 7", "src": "Latihan", "q": "Himpunan bilangan real termasuk himpunan ...", "a": ["Terhingga", "Terbilang", "Tak terhitung", "Kosong"], "k": 2, "w": "", "id": "2fe098196e"}, {"g": "Sesi 7", "src": "Latihan", "q": "Himpunan yang ekuivalen dengan himpunan bagian sejati dirinya sendiri disebut himpunan ...", "a": ["Tak terhingga", "Terhingga", "Kosong", "Semesta"], "k": 0, "w": "", "id": "f57b06cbbc"}, {"g": "Sesi 7", "src": "Latihan", "q": "Himpunan yang ekuivalen dengan himpunan bilangan asli disebut himpunan ...", "a": ["Terbilang", "Kosong", "Terhingga", "Tak terbilang"], "k": 0, "w": "", "id": "a76767b8d1"}, {"g": "Sesi 8", "src": "Latihan", "q": "Pembuktian dengan mengandaikan negasi pernyataan hingga muncul pertentangan disebut ...", "a": ["Langsung", "Kontraposisi", "Kontradiksi", "Induksi"], "k": 2, "w": "", "id": "37a5954002"}, {"g": "Sesi 8", "src": "Latihan", "q": "Langkah kedua induksi matematika setelah cek n=1 adalah ...", "a": ["Asumsikan benar untuk n=k", "Buktikan untuk n=0", "Cek semua n", "Kontradiksikan"], "k": 0, "w": "Lalu buktikan untuk n=k+1.", "id": "78cc351e8c"}, {"g": "Sesi 8", "src": "Latihan", "q": "Kontraposisi dari \"jika n ganjil maka n³+4 ganjil\" adalah ...", "a": ["Jika n³+4 genap maka n genap", "Jika n genap maka n³+4 genap", "Jika n³+4 ganjil maka n ganjil", "Jika n ganjil maka n³+4 genap"], "k": 0, "w": "", "id": "41620490c6"}, {"g": "Sesi 8", "src": "Latihan", "q": "Untuk membuktikan tiga pernyataan ekuivalen, cara yang tepat adalah ...", "a": ["(1)⇒(2), (2)⇒(3), (3)⇒(1)", "Hanya (1)⇒(2)", "Hanya (1)⇒(3)", "Cek satu contoh bilangan"], "k": 0, "w": "Pembuktian melingkar.", "id": "69a4adb87a"}, {"g": "Sesi 8", "src": "Latihan", "q": "Bukti ketunggalan dilakukan dengan menunjukkan bahwa jika x dan y memenuhi sifat itu, maka ...", "a": ["x = y", "x ≠ y", "x > y", "x dan y kosong"], "k": 0, "w": "", "id": "f360cd9bbd"}], "esai": [["Buktikan: jika n ganjil maka n² ganjil.", "n=2k+1; n²=4k²+4k+1=2(2k²+2k)+1, jadi ganjil."], ["Buktikan √2 irasional.", "Andaikan √2=p/q dengan FPB 1; p²=2q² sehingga p genap; p=2r memberi q²=2r² sehingga q genap; bertentangan."], ["Buktikan f(x)=3x−5 bijektif pada R.", "Injektif: f(a)=f(b) ⇒ a=b. Surjektif: untuk y ambil x=(y+5)/3."], ["Buktikan modus tollens dengan tabel kebenaran.", "[(p⇒q)∧~q]⇒~p bernilai B pada keempat baris, jadi tautologi dan argumennya sah."], ["Buktikan dengan induksi: 1+2+…+n = n(n+1)/2.", "Basis n=1 benar. Asumsi n=k. Untuk k+1: k(k+1)/2+(k+1)=(k+1)(k+2)/2."], ["Buktikan tiga pernyataan ini ekuivalen: 3n−3 genap, n+4 ganjil, n² ganjil.", "Buktikan melingkar (1)⇒(2)⇒(3)⇒(1). Inti: masing-masing berarti n ganjil, n=2k+1."], ["Periksa keabsahan: jika hujan deras maka banjir; tidak hujan deras; jadi tidak banjir.", "Tulis [(p⇒q)∧~p]⇒~q; buat tabel; baris p=S, q=B bernilai S, jadi tidak sah."]]};const KEY='latihan_ut_'+D.kode;
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}};
+let S=load();
+const norm=()=>{S.salah=S.salah||{};S.benar=S.benar||{};S.log=S.log||{};S.sims=S.sims||[];S.hari=S.hari||[]};norm();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const app=document.getElementById('app');const live=t=>{document.getElementById('live').textContent=t};
+const el=(t,p={},...c)=>{const e=document.createElement(t);for(const k in p){if(k==='on')e.onclick=p[k];else if(k==='cls')e.className=p[k];else if(k==='style')e.setAttribute('style',p[k]);else e.setAttribute(k,p[k])}c.forEach(x=>{if(x!==null&&x!==undefined&&x!=='')e.append(x)});return e};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pad=n=>String(n).padStart(2,'0');
+const hariIni=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const tglPendek=t=>{const d=new Date(t);return pad(d.getDate())+'/'+pad(d.getMonth()+1)};
+const HURUF='ABCDEFGH';
+let keyHandler=null;document.addEventListener('keydown',e=>{if(keyHandler&&!/^(TEXTAREA|SELECT|INPUT)$/.test(document.activeElement.tagName))keyHandler(e)});
+function layar(){clearInterval(window.T);keyHandler=null;app.replaceChildren();window.scrollTo(0,0)}
+function catat(q,ok){const l=S.log[q.id]||[0,0,0,0];S.log[q.id]=[l[0]+1,l[1]+(ok?1:0),ok?1:0,Date.now()];
+ if(ok){S.benar[q.id]=1;delete S.salah[q.id]}else{S.salah[q.id]=1;delete S.benar[q.id]}
+ const h=hariIni();if(!S.hari.includes(h)){S.hari.push(h);S.hari=S.hari.slice(-90)}save()}
+function beruntun(){const set=new Set(S.hari);let n=0;const d=new Date();if(!set.has(hariIni()))d.setDate(d.getDate()-1);
+ for(;;){const k=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());if(set.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
+/* Perkiraan nilai: soal yang sudah dijawab memakai hasil jawaban terakhir; soal yang belum dijawab dihitung 25% (setara menebak 1 dari 4).
+   Jika ada simulasi, rata-rata 3 simulasi terakhir ikut dihitung setengah bobot. */
+function hitung(){const grup={};for(const q of D.q){const g=grup[q.g]=grup[q.g]||{N:0,A:0,C:0};g.N++;const l=S.log[q.id];if(l){g.A++;g.C+=l[2]}}
+ let A=0,C=0,harap=0;for(const g of Object.values(grup)){A+=g.A;C+=g.C;harap+=g.C+(g.N-g.A)*0.25}
+ let est=harap/D.q.length*100;const sim=S.sims.slice(-3);if(sim.length){est=0.5*est+0.5*(sim.reduce((a,b)=>a+b.p,0)/sim.length)}
+ const p=A?C/A:0;const rentang=Math.max(3,Math.round(Math.min(25,196*Math.sqrt(Math.max(p*(1-p),0.04)/Math.max(A,1)))));
+ return {grup,A,C,est:Math.round(est),rentang,cukup:A>=20,akurasi:A?Math.round(C/A*100):0,dikuasai:D.q.filter(q=>S.benar[q.id]).length,salah:D.q.filter(q=>S.salah[q.id]).length}}
+const status=v=>v>=80?['Siap','c-ok']:v>=65?['Hampir siap','c-mid']:['Perlu belajar lagi','c-bad'];
+const warnaAkurasi=a=>a>=80?'var(--ok)':a>=60?'var(--mid)':'var(--bad)';
+function urutSesi(a,b){const n=s=>s==='Latihan Akhir'?99:parseInt(s.split(' ')[1]);return n(a)-n(b)}
+function fokus(H){let lemah=null;for(const g of Object.keys(H.grup).sort(urutSesi)){const s=H.grup[g];const ak=s.A?Math.round(s.C/s.A*100):0;if(s.A>=3&&ak<80&&(!lemah||ak<lemah.ak))lemah={g,ak}}
+ if(!lemah){const b=Object.keys(H.grup).sort(urutSesi).find(g=>H.grup[g].A<H.grup[g].N);if(b)lemah={g:b,ak:H.grup[b].A?Math.round(H.grup[b].C/H.grup[b].A*100):null}}return lemah}
+function soalSesi(g){const l=D.q.filter(q=>q.g===g);const belum=shuffle(l.filter(q=>!S.log[q.id]||!S.log[q.id][2]));const sudah=shuffle(l.filter(q=>S.log[q.id]&&S.log[q.id][2]));return belum.concat(sudah)}
+function menu(){layar();const H=hitung();
+ S.ringkas={est:H.est,cukup:H.cukup,akurasi:H.akurasi,A:H.A,N:D.q.length,t:Date.now()};save();
+ const f=fokus(H);
+ /* Dashboard: perkiraan, statistik, dan tombol lanjut belajar di layar pertama */
+ const dash=el('section',{cls:'card','aria-label':'Ringkasan'});
+ if(H.cukup){const [st,cl]=status(H.est);
+  dash.append(el('div',{cls:'mut'},'Perkiraan nilai ujian'),
+   el('div',{cls:'row'},el('span',{cls:'big'},String(H.est)),el('span',{cls:'mut'},`± ${H.rentang}`),el('span',{cls:'chip '+cl},st)),
+   el('div',{cls:'mut',style:'margin-top:2px'},'Perkiraan kasar dari latihan, bukan jaminan nilai ujian.'));
+ }else if(H.A===0){dash.append(el('h2',{},'Mulai latihan'),el('div',{cls:'mut'},`${D.q.length} soal pilihan ganda dan ${D.esai.length} latihan esai. Perkiraan nilai muncul setelah 20 soal dijawab.`))
+ }else{dash.append(el('div',{cls:'mut'},`Perkiraan nilai muncul setelah 20 soal dijawab (${H.A}/20).`),el('div',{cls:'bar'},el('i',{style:`width:${Math.round(H.A/20*100)}%`})))}
+ if(H.A>0)dash.append(el('div',{cls:'stats'},
+  el('div',{cls:'stat'},el('b',{},H.akurasi+'%'),el('span',{},'akurasi')),
+  el('div',{cls:'stat'},el('b',{},`${H.A}/${D.q.length}`),el('span',{},'pernah dijawab')),
+  el('div',{cls:'stat'},el('b',{},String(H.dikuasai)),el('span',{},'dikuasai')),
+  el('div',{cls:'stat'},el('b',{},String(beruntun())),el('span',{},'hari beruntun'))));
+ const cta=el('div',{cls:'cta'});
+ if(f)cta.append(el('button',{cls:'pri',on:()=>quiz(soalSesi(f.g),false,0,'Latihan '+f.g)},H.A===0?`Mulai dari ${f.g}`:`Lanjut: ${f.g}`+(f.ak!==null&&f.ak!==undefined?` (akurasi ${f.ak}%)`:'')));
+ if(H.salah)cta.append(el('button',{on:()=>quiz(shuffle(D.q.filter(q=>S.salah[q.id])),false,0,'Ulangi yang salah')},`Ulangi ${H.salah} soal salah`));
+ dash.append(cta);app.append(dash);
+ /* Mode latihan sebagai ubin */
+ const sel=el('select',{'aria-label':'Pilih sesi'});sel.append(el('option',{value:''},'Semua sesi'));Object.keys(H.grup).sort(urutSesi).forEach(g=>sel.append(el('option',{value:g},`${g} (${H.grup[g].N})`)));
+ const nSel=el('select',{'aria-label':'Jumlah soal'});[20,30,50].filter(v=>v<=D.q.length).forEach(v=>nSel.append(el('option',{value:v},v+' soal')));if(!nSel.options.length)nSel.append(el('option',{value:D.q.length},D.q.length+' soal'));
+ const mSel=el('select',{'aria-label':'Waktu'});[30,60,90].forEach(v=>mSel.append(el('option',{value:v},v+' menit')));
+ app.append(el('section',{'aria-label':'Mode latihan'},el('div',{cls:'modes'},
+  el('div',{cls:'mode'},el('b',{},'Latihan per sesi'),el('span',{},'Jawaban dan penjelasan langsung muncul.'),el('div',{cls:'row'},sel,el('button',{cls:'pri',on:()=>{const g=sel.value;quiz(g?soalSesi(g):shuffle(D.q),false,0,g?'Latihan '+g:'Latihan semua sesi')}},'Mulai'))),
+  el('div',{cls:'mode'},el('b',{},'Simulasi ujian'),el('span',{},'Berwaktu; hasil di akhir. Bukan aturan resmi UT.'),el('div',{cls:'row'},nSel,mSel,el('button',{cls:'pri',on:()=>quiz(shuffle(D.q).slice(0,+nSel.value),true,+mSel.value,'Simulasi ujian')},'Mulai'))),
+  el('div',{cls:'mode'},el('b',{},'Kartu hafalan'),el('span',{},'Tebak dalam kepala, lalu buka jawabannya.'),el('div',{cls:'row'},el('button',{on:()=>cards(shuffle(D.q))},'Mulai'))),
+  el('div',{cls:'mode'},el('b',{},'Latihan esai'),el('span',{},`${D.esai.length} pertanyaan dengan poin kunci jawaban.`),el('div',{cls:'row'},el('button',{on:essay},'Mulai'))))));
+ /* Progres per sesi (bisa dilipat) */
+ const det=el('details',{cls:'card'});if(H.A>0)det.setAttribute('open','');
+ det.append(el('summary',{},`Progres per sesi`,el('span',{cls:'mut',style:'font-weight:400;margin-left:auto'},`${Object.keys(H.grup).length} sesi`)));
+ const grid=el('div',{cls:'sesi-grid'});
+ for(const g of Object.keys(H.grup).sort(urutSesi)){const s=H.grup[g];const ak=s.A?Math.round(s.C/s.A*100):0;
+  grid.append(el('button',{cls:'sesi','aria-label':`${g}: ${s.A} dari ${s.N} dijawab, akurasi ${ak} persen`,on:()=>quiz(soalSesi(g),false,0,'Latihan '+g)},
+   el('div',{cls:'lbl'},el('span',{},g),el('span',{cls:'mut'},s.A?`${s.A}/${s.N} · ${ak}%`:`0/${s.N}`)),
+   el('div',{cls:'bar'},el('i',{style:`width:${Math.round(s.A/s.N*100)}%;background:${s.A?warnaAkurasi(ak):'var(--track)'}`}))))}
+ det.append(el('div',{},el('div',{cls:'mut',style:'margin-bottom:6px'},'Batang = soal yang sudah dijawab; warna = akurasi (hijau ≥80%, kuning ≥60%, merah <60%).'),grid));app.append(det);
+ if(S.sims.length){const c=el('div',{cls:'chart',role:'img','aria-label':'Skor simulasi terakhir: '+S.sims.slice(-10).map(s=>s.p+'%').join(', ')});
+  for(const s of S.sims.slice(-10))c.append(el('div',{},String(s.p),el('i',{style:`height:${Math.max(4,s.p)}%;background:${warnaAkurasi(s.p)}`}),tglPendek(s.t)));
+  app.append(el('section',{cls:'card'},el('h2',{},'Riwayat simulasi'),el('div',{cls:'mut'},`${S.sims.length} kali simulasi · 10 terakhir`),c))}
+ const hapus=el('button',{cls:'danger'},'Hapus riwayat');let yakin=false;hapus.onclick=()=>{if(!yakin){yakin=true;hapus.textContent='Yakin? Klik lagi untuk menghapus semua';return}S={};norm();save();menu()};
+ app.append(el('div',{cls:'foot'},el('span',{cls:'mut',id:'msg',role:'status'},'Progres tersimpan otomatis di browser ini.'),hapus))}
+function quiz(list,sim,menit,judul){layar();if(!list.length){menu();return}
+ let i=0,skor=0;const jaw=[];let sisa=sim?menit*60:0;let keluarYakin=false;
+ const timer=el('span',{cls:'timer'});const fmt=()=>Math.floor(sisa/60)+':'+pad(sisa%60);timer.textContent=fmt();
+ if(sim){window.T=setInterval(()=>{sisa--;timer.textContent=fmt();if(sisa<=300)timer.classList.add('low');if(sisa<=0)selesai()},1000)}
+ function selesai(){layar();const pct=Math.round(skor/Math.max(1,jaw.length||list.length)*100);const total=sim?list.length:jaw.length;const pctTotal=Math.round(skor/Math.max(1,total)*100);
+  const c=el('section',{cls:'card'},el('div',{cls:'mut'},judul),el('h2',{},`Benar ${skor} dari ${total}`));const [st,cl]=status(pctTotal);
+  c.append(el('div',{cls:'row'},el('span',{cls:'big'},pctTotal+'%'),el('span',{cls:'chip '+cl},st)));
+  if(sim){const prev=S.sims.length?S.sims[S.sims.length-1].p:null;S.sims.push({t:Date.now(),p:pctTotal,n:list.length});S.sims=S.sims.slice(-30);save();
+   if(prev!==null){const d=pctTotal-prev;c.append(el('div',{cls:'mut'},d>0?`▲ Naik ${d} poin dari simulasi sebelumnya.`:d<0?`▼ Turun ${-d} poin dari simulasi sebelumnya.`:'Sama dengan simulasi sebelumnya.'))}}
+  const H=hitung();if(H.cukup)c.append(el('div',{cls:'mut'},`Perkiraan nilai ujian sekarang: ${H.est} ± ${H.rentang}`));
+  const salah=jaw.filter(j=>!j.ok);const aksi=el('div',{cls:'cta'});
+  if(salah.length)aksi.append(el('button',{cls:'pri',on:()=>quiz(shuffle(salah.map(j=>j.q)),false,0,'Ulangi yang salah')},`Ulangi ${salah.length} soal yang salah`));
+  aksi.append(el('button',{on:menu},'Kembali ke menu'));c.append(aksi);
+  const per={};jaw.forEach(j=>{const p=per[j.q.g]=per[j.q.g]||[0,0];p[0]++;if(j.ok)p[1]++});
+  if(Object.keys(per).length>1){const t=el('div',{cls:'mini'});Object.keys(per).sort(urutSesi).forEach(g=>{const [n,b]=per[g];const ak=Math.round(b/n*100);t.append(el('div',{cls:'stat'},el('b',{style:`color:${warnaAkurasi(ak)}`},`${b}/${n}`),el('span',{},g)))});c.append(el('div',{cls:'mut',style:'margin-top:12px'},'Benar per sesi'),t)}
+  app.append(c);
+  if(salah.length){const p=el('section',{cls:'card'},el('h2',{},`Pembahasan (${salah.length} salah)`));
+   salah.forEach(j=>p.append(el('div',{cls:'note'},el('b',{},j.q.q),el('br'),'Jawaban: ',el('b',{},j.q.a[j.q.k]),j.q.w?' — '+j.q.w:'')));app.append(p)}
+  live(`Selesai. Benar ${skor} dari ${total}.`)}
+ function show(){if(i>=list.length)return selesai();const q=list[i];app.replaceChildren();window.scrollTo(0,0);
+  const opts=shuffle(q.a.map((t,x)=>({t,x})));let dijawab=false;
+  const kanan=sim?el('span',{cls:'row'},'⏱ ',timer):el('span',{cls:'mut'},`Benar ${skor}/${i}`);
+  const c=el('section',{cls:'card'},
+   el('div',{cls:'qhead'},el('span',{cls:'mut'},`${judul} · soal ${i+1} dari ${list.length}`),kanan),
+   el('div',{cls:'bar'},el('i',{style:`width:${Math.round(i/list.length*100)}%`})),
+   el('div',{cls:'row'},el('span',{cls:'tag'},q.g),el('span',{cls:'tag'},q.src)),
+   el('p',{cls:'qtext',id:'qtext',tabindex:'-1'},q.q));
+  const tombol=[];const lanjut=el('button',{cls:'pri'},i+1<list.length?'Lanjut →':'Lihat hasil');lanjut.onclick=()=>{i++;show()};
+  const pilih=o=>{if(dijawab)return;dijawab=true;const ok=o.x===q.k;if(ok)skor++;jaw.push({q,ok});catat(q,ok);
+   if(sim){i++;show();return}
+   const h=c.querySelector('.hint');if(h)h.remove();
+   tombol.forEach(b=>{b.disabled=true;if(+b.dataset.x===q.k)b.classList.add('ok')});if(!ok)tombol.find(b=>+b.dataset.x===o.x).classList.add('bad');
+   const fb=el('div',{cls:'fb '+(ok?'ok':'bad'),role:'status'},el('b',{},ok?'✓ Benar.':'✗ Kurang tepat.'),ok?'':` Jawaban: ${q.a[q.k]}`,q.w?el('div',{style:'margin-top:4px'},q.w):null);
+   c.append(fb,el('div',{cls:'cta'},lanjut));live(ok?'Benar':'Kurang tepat. Jawaban: '+q.a[q.k]);lanjut.focus()};
+  opts.forEach((o,ix)=>{const b=el('button',{cls:'opt','aria-label':`${HURUF[ix]}. ${o.t}`},el('span',{cls:'key','aria-hidden':'true'},HURUF[ix]),el('span',{},o.t));b.dataset.x=o.x;b.onclick=()=>pilih(o);tombol.push(b);c.append(b)});
+  c.append(el('div',{cls:'hint'},'Pintasan: tekan A–D atau 1–4 untuk menjawab, Enter untuk lanjut.'));
+  const keluar=el('button',{},sim?'Akhiri simulasi':'Kembali ke menu');
+  keluar.onclick=()=>{if(sim&&!keluarYakin){keluarYakin=true;keluar.textContent='Yakin? Simulasi berhenti dan dinilai';return}if(sim)selesai();else menu()};
+  app.append(c,el('div',{cls:'foot'},keluar));
+  keyHandler=e=>{const k=e.key.toUpperCase();let ix=HURUF.indexOf(k);if(ix<0&&/^[1-8]$/.test(k))ix=+k-1;
+   if(!dijawab&&ix>=0&&ix<opts.length){e.preventDefault();pilih(opts[ix])}else if(dijawab&&e.key==='Enter'){e.preventDefault();lanjut.click()}};
+  document.getElementById('qtext').focus({preventScroll:true})}
+ show()}
+function cards(list){let i=0;function show(){layar();if(i>=list.length)return menu();const q=list[i];
+  const c=el('section',{cls:'card'},el('div',{cls:'qhead'},el('span',{cls:'mut'},`Kartu ${i+1} dari ${list.length}`),el('span',{cls:'tag'},q.g)),el('div',{cls:'bar'},el('i',{style:`width:${Math.round(i/list.length*100)}%`})),el('p',{cls:'qtext'},q.q));
+  const buka=el('button',{cls:'pri'},'Buka jawaban');const next=el('button',{on:()=>{i++;show()}},'Berikutnya →');
+  const flip=()=>{if(!buka.isConnected)return;buka.replaceWith(el('div',{cls:'fb ok'},el('b',{},q.a[q.k]),q.w?' — '+q.w:''));next.focus()};buka.onclick=flip;
+  c.append(buka,el('div',{cls:'cta'},next),el('div',{cls:'hint'},'Pintasan: Spasi untuk membuka, Enter untuk berikutnya.'));app.append(c,el('div',{cls:'foot'},el('button',{on:menu},'Kembali ke menu')));
+  keyHandler=e=>{if(e.key===' '){e.preventDefault();flip()}else if(e.key==='Enter'&&!buka.isConnected){e.preventDefault();i++;show()}};buka.focus()}show()}
+function essay(){layar();D.esai.forEach((e,i)=>{const c=el('section',{cls:'card'},el('div',{cls:'mut'},`Esai ${i+1} dari ${D.esai.length}`),el('p',{cls:'qtext'},e[0]),el('textarea',{rows:'4','aria-label':'Jawaban esai '+(i+1),placeholder:'Tulis jawaban Anda di sini…'}));
+  const b=el('button',{},'Lihat poin kunci');b.onclick=()=>b.replaceWith(el('div',{cls:'note'},el('b',{},'Poin kunci: '),e[1]));c.append(b);app.append(c)});app.append(el('div',{cls:'foot'},el('button',{on:menu},'Kembali ke menu')))}
+menu();
+</script></body></html>

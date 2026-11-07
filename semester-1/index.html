@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Semester 1</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mut:#5f6b7a;--line:#d9dee5;--pri:#0b5cad;--ok:#17803d;--bad:#c02b2b;--mid:#a86b00;--track:#e7ebf0}
+@media (prefers-color-scheme:dark){:root{--bg:#12161c;--card:#1b222b;--ink:#e8ecf1;--mut:#a3aebb;--line:#333d49;--pri:#6db1f5;--ok:#5fd38a;--bad:#ff8a8a;--mid:#f0b54a;--track:#2a333f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:auto;padding:16px 16px 48px}h1{font-size:1.4rem;margin:.3rem 0}p{color:var(--mut)}a{color:var(--pri)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px}
+.card{display:flex;flex-direction:column;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ink);text-decoration:none}
+.card:hover,.card:focus-visible{border-color:var(--pri);outline:none}.card b{color:var(--pri)}.card small{color:var(--mut)}
+.est{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;margin-top:6px}
+.bar{height:6px;background:var(--track);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%}
+.dukung{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:20px}
+.dukung p{margin:0;font-size:.92rem}.dukung a{display:inline-block;background:#f5a524;color:#1c1300;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 14px}
+.dukung a:hover,.dukung a:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+</style></head><body><main>
+<a href="../index.html">← Semua semester</a><h1>Semester 1</h1>
+<p>277 soal pilihan ganda dan 43 latihan esai. Tidak resmi; bukan bocoran soal ujian.</p>
+<div class="grid">
+<a class="card" href="soal/MKDI4201.html" data-kode="MKDI4201" data-n="26"><b>MKDI4201</b><span>Bahasa Inggris</span><small>26 soal · 7 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/MKWN4101.html" data-kode="MKWN4101" data-n="20"><b>MKWN4101</b><span>Pendidikan Agama Islam</span><small>20 soal · 7 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/MKWN4109.html" data-kode="MKWN4109" data-n="20"><b>MKWN4109</b><span>Pendidikan Kewarganegaraan</span><small>20 soal · 7 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/STMA4112.html" data-kode="STMA4112" data-n="61"><b>STMA4112</b><span>Matematika Dasar</span><small>61 soal · 7 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/STSI4101.html" data-kode="STSI4101" data-n="52"><b>STSI4101</b><span>Pengantar Sistem Informasi</span><small>52 soal · 5 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/STSI4102.html" data-kode="STSI4102" data-n="47"><b>STSI4102</b><span>Algoritma dan Pemrograman</span><small>47 soal · 5 esai</small><small class="isi">Belum mulai</small></a>
+<a class="card" href="soal/STSI4103.html" data-kode="STSI4103" data-n="51"><b>STSI4103</b><span>Sistem Operasi</span><small>51 soal · 5 esai</small><small class="isi">Belum mulai</small></a>
+</div>
+<aside class="dukung" aria-label="Dukung pembuat"><p>Latihan ini gratis. Kalau bermanfaat, Anda bisa mendukung pembuatnya secara sukarela.</p><a href="https://saweria.co/himisbah" target="_blank" rel="noopener">☕ Dukung via Saweria</a></aside>
+<p style="margin-top:20px;font-size:.9rem">Perkiraan nilai dihitung dari latihan Anda sendiri dan tersimpan di browser ini. Angkanya kasar, bukan jaminan nilai ujian.</p>
+</main>
+<script>
+const baca=k=>{try{return (JSON.parse(localStorage.getItem('latihan_ut_'+k))||{}).ringkas||null}catch(e){return null}};
+const warna=v=>v>=80?'var(--ok)':v>=65?'var(--mid)':'var(--bad)';
+for(const a of document.querySelectorAll('a.card[data-kode]')){
+ const kode=a.dataset.kode.split(',');const rs=kode.map(baca).filter(r=>r&&r.A>0);const box=a.querySelector('.isi');
+ if(!rs.length){box.textContent='Belum mulai';continue}
+ const siap=rs.filter(r=>r.cukup);const A=rs.reduce((s,r)=>s+r.A,0);const N=+a.dataset.n;
+ if(!siap.length){box.textContent=A+' soal dijawab · perkiraan muncul setelah 20';continue}
+ const est=Math.round(siap.reduce((s,r)=>s+r.est,0)/siap.length);const w=warna(est);
+ const e=document.createElement('div');e.className='est';e.style.color=w;e.textContent=(kode.length>1?'Rata-rata ':'Perkiraan ')+est;
+ const bar=document.createElement('div');bar.className='bar';const i=document.createElement('i');i.style.width=Math.min(100,Math.round(A/N*100))+'%';i.style.background=w;bar.append(i);
+ const s=document.createElement('small');s.textContent=A+'/'+N+' soal dijawab'+(kode.length>1?' · '+siap.length+' dari '+kode.length+' MK punya perkiraan':'');
+ box.replaceWith(e,bar,s)}
+</script>
+</body></html>
