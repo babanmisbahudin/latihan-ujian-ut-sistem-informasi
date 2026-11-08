@@ -20,6 +20,9 @@ LINKEDIN = "https://www.linkedin.com/in/himisbah"
 # Link repo GitHub, ditampilkan di bagian bawah halaman.
 REPO = "https://github.com/babanmisbahudin/latihan-ujian-ut-sistem-informasi"
 PRODI = "Sistem Informasi"
+# Pemegang hak cipta dan tahun, ditampilkan di bagian bawah setiap halaman.
+PEMILIK = "Baban Misbahudin"
+TAHUN = "2026"
 # ----------------------------------------------------------------------------
 
 SRC = os.path.dirname(os.path.abspath(__file__))
@@ -62,7 +65,8 @@ h2{font-size:1.1rem;margin:32px 0 12px}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem}
 .btn:hover{border-color:var(--pri)}.btn svg{width:18px;height:18px;flex:none}
 .btn.saweria{background:#f5a524;border-color:#f5a524;color:#1c1300}
-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:.84rem;color:var(--mut);display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}"""
+footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--mut);display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;align-items:flex-start}
+footer p{margin:0 0 6px;max-width:70ch}footer b{color:var(--ink);font-weight:600}"""
 
 IKON = {
     "instagram": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
@@ -103,6 +107,22 @@ def pembuat():
             f'<div class="links">{"".join(tombol)}</div></aside>')
 
 
+def kaki(repo=""):
+    """Keterangan hak cipta, lisensi, dan penafian di bagian bawah halaman."""
+    return (
+        '<footer class="kaki"><div>'
+        f'<p><b>© {TAHUN} {html.escape(PEMILIK)}.</b> Kode berlisensi '
+        '<a href="https://opensource.org/license/mit" target="_blank" rel="noopener">MIT</a>; '
+        'soal dan esai berlisensi '
+        '<a href="https://creativecommons.org/licenses/by-nc/4.0/deed.id" target="_blank" rel="noopener">CC BY-NC 4.0</a> '
+        '(boleh dibagikan dengan mencantumkan sumber, tidak untuk dijual).</p>'
+        '<p>Latihan <b>tidak resmi</b> dan tidak berafiliasi dengan Universitas Terbuka. Nama Universitas Terbuka '
+        'dan isi Buku Materi Pokok (BMP) adalah milik Universitas Terbuka; soal di sini ditulis ulang, bukan salinan BMP, '
+        'dan <b>bukan bocoran soal ujian</b>. Disediakan apa adanya tanpa jaminan; jika berbeda, ikuti BMP dan tutor Anda.</p>'
+        '<p>Privasi: tidak ada akun dan tidak ada data yang dikirim. Progres dan perkiraan nilai hanya tersimpan di browser Anda.</p>'
+        f'</div>{repo}</footer>')
+
+
 def halaman(judul, kepala, isi, judul_tab=None):
     repo = f'<a href="{html.escape(REPO)}" target="_blank" rel="noopener">Kode sumber di GitHub</a>' if REPO else ""
     return f"""<!doctype html>
@@ -115,11 +135,16 @@ def halaman(judul, kepala, isi, judul_tab=None):
 {kepala}
 {isi}
 {pembuat()}
-<footer><span>Latihan tidak resmi, tidak berafiliasi dengan Universitas Terbuka, dan bukan bocoran soal ujian. Perkiraan nilai dihitung dari latihan Anda sendiri dan tersimpan hanya di browser ini.</span>{repo}</footer>
+{kaki(repo)}
 </main>
 {SKRIP}
 </body></html>
 """
+
+
+# Gaya footer untuk halaman latihan (memakai token warna template).
+KAKI_LATIHAN = ('<style>.kaki{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--mut)}'
+                '.kaki p{margin:0 0 6px}.kaki b{color:var(--ink);font-weight:600}</style>')
 
 
 def muat(path):
@@ -157,7 +182,8 @@ def bangun_semester(folder_src, tpl):
         esai = m.ESAI.get(kode, [])
         data = json.dumps(dict(kode=kode, q=daftar, esai=esai), ensure_ascii=False).replace("</", "<\\/")
         out = (tpl.replace("__TITLE__", html.escape(f"Latihan {kode} {nama}"))
-                  .replace("__SEMESTER__", f"Semester {nomor}").replace("__DATA__", data))
+                  .replace("__SEMESTER__", f"Semester {nomor}").replace("__DATA__", data)
+                  .replace("</main>", KAKI_LATIHAN + kaki() + "</main>"))
         open(os.path.join(keluar, "soal", f"{kode}.html"), "w", encoding="utf-8").write(out)
         rows.append((kode, nama, len(daftar), len(esai)))
         print(f"  {kode}: {len(daftar)} soal, {len(esai)} esai")

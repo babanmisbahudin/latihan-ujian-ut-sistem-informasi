@@ -79,6 +79,8 @@ Lalu buka `index.html` di browser.
 │   ├── template.html          # Tampilan dan logika halaman latihan
 │   └── semester-1/
 │       └── soal.py            # Daftar MK, bank soal, dan esai semester 1
+├── LICENSE                    # Lisensi kode (MIT)
+├── LICENSE-KONTEN.md          # Lisensi soal dan esai (CC BY-NC 4.0)
 └── README.md
 ```
 
@@ -125,10 +127,20 @@ Kode mata kuliah dipakai sebagai kunci penyimpanan progres, jadi pastikan setiap
 - Soal hitungan (Matematika, penjadwalan CPU, penelusuran sorting dan kode Java) sudah dicek manual, tetapi kesalahan tetap mungkin terjadi. Jika menemukan kunci yang keliru, buka **Issue** atau kirim **Pull Request** dengan rujukan halaman BMP.
 - Jika ada perbedaan, **BMP edisi terbaru dan tutor Anda yang berlaku**.
 
-## Hak cipta
+## Hak cipta dan lisensi
 
-- Isi BMP dan materi tutorial adalah hak cipta Universitas Terbuka. Repo ini tidak memuat salinan BMP, soal Tes Formatif, maupun soal kuis tutorial.
-- Lisensi untuk kode dan soal buatan sendiri di repo ini belum ditetapkan. Jika ingin orang lain bebas memakai ulang, tambahkan file `LICENSE`, misalnya MIT untuk kode dan CC BY-NC 4.0 untuk soal.
+© 2026 Baban Misbahudin.
+
+| Bagian | Lisensi | Artinya |
+|---|---|---|
+| Kode (`src/`, HTML, CSS, JavaScript) | [MIT](LICENSE) | Bebas dipakai, diubah, dan dibagikan, asalkan pemberitahuan hak cipta tetap dicantumkan. |
+| Soal dan esai (`src/semester-*/soal.py` dan halaman latihan) | [CC BY-NC 4.0](LICENSE-KONTEN.md) | Boleh dibagikan dan diubah dengan **mencantumkan sumber**, tetapi **tidak boleh dijual atau dipakai untuk tujuan komersial**. |
+
+**Penafian**
+- Proyek ini **tidak resmi** dan **tidak berafiliasi** dengan Universitas Terbuka. Nama Universitas Terbuka dan isi Buku Materi Pokok (BMP) adalah milik Universitas Terbuka.
+- Repo ini **tidak memuat salinan BMP**, soal Tes Formatif, maupun soal kuis tutorial. Soal ditulis ulang dengan kata-kata sendiri berdasarkan pemahaman atas materi, dan **bukan bocoran soal ujian**.
+- Isi disediakan **apa adanya, tanpa jaminan** ketepatan. Perkiraan nilai hanyalah alat bantu belajar, bukan prediksi nilai resmi.
+- **Privasi:** tidak ada akun, analitik, atau pengiriman data. Progres tersimpan hanya di `localStorage` browser pengguna.
 
 ## Ikuti dan dukung pembuat
 
