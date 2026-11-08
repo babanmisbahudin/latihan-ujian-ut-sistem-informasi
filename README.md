@@ -130,11 +130,16 @@ Kode mata kuliah dipakai sebagai kunci penyimpanan progres, jadi pastikan setiap
 - Isi BMP dan materi tutorial adalah hak cipta Universitas Terbuka. Repo ini tidak memuat salinan BMP, soal Tes Formatif, maupun soal kuis tutorial.
 - Lisensi untuk kode dan soal buatan sendiri di repo ini belum ditetapkan. Jika ingin orang lain bebas memakai ulang, tambahkan file `LICENSE`, misalnya MIT untuk kode dan CC BY-NC 4.0 untuk soal.
 
-## Dukung pembuat
+## Ikuti dan dukung pembuat
 
-Latihan ini **gratis dan akan tetap gratis**. Kalau bermanfaat, Anda bisa mendukung pembuatnya secara sukarela lewat Saweria: **[saweria.co/himisbah](https://saweria.co/himisbah)** ☕
+Latihan ini **gratis dan akan tetap gratis**. Ikuti pembuatnya untuk kabar semester berikutnya, atau dukung secara sukarela:
 
-Untuk pemilik repo: isi link Saweria publik di `SAWERIA` pada `src/build.py`, lalu jalankan `python3 src/build.py`. Tombol dukungan akan muncul di halaman utama dan halaman semester. Jika `SAWERIA` dikosongkan, tombolnya disembunyikan.
+- Instagram: [@himisbah_](https://instagram.com/himisbah_)
+- TikTok: [@himisbah](https://www.tiktok.com/@himisbah)
+- LinkedIn: [himisbah](https://www.linkedin.com/in/himisbah)
+- Saweria: [saweria.co/himisbah](https://saweria.co/himisbah) ☕
+
+Untuk pemilik repo: semua link ini diatur di bagian **Pengaturan** paling atas `src/build.py` (`INSTAGRAM`, `TIKTOK`, `LINKEDIN`, `SAWERIA`, `REPO`). Kosongkan salah satunya untuk menyembunyikan tombolnya, lalu jalankan `python3 src/build.py`.
 
 ## Kontribusi
 

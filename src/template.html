@@ -5,9 +5,12 @@
 :root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mut:#5f6b7a;--line:#d9dee5;--pri:#0b5cad;--prib:#e8f1fb;--ok:#17803d;--bad:#c02b2b;--mid:#a86b00;--okb:#e6f5ea;--badb:#fbe9e9;--warn:#fff4d6;--track:#e7ebf0}
 @media (prefers-color-scheme:dark){:root{--bg:#12161c;--card:#1b222b;--ink:#e8ecf1;--mut:#a3aebb;--line:#333d49;--pri:#6db1f5;--prib:#1a2a3c;--ok:#5fd38a;--bad:#ff8a8a;--mid:#f0b54a;--okb:#16321f;--badb:#3a1c1c;--warn:#3a321a;--track:#2a333f}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:760px;margin:auto;padding:16px 16px 48px}h1{font-size:1.3rem;margin:.2rem 0}h2{font-size:1.05rem;margin:0 0 .5rem}.mut{color:var(--mut);font-size:.9rem}
+main{max-width:760px;margin:auto;padding:20px 16px 48px}h1{font-size:clamp(1.4rem,3.5vw,1.8rem);line-height:1.25;margin:6px 0 2px;letter-spacing:-.01em}
+.crumb{font-size:.88rem;color:var(--mut);display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.crumb a{text-decoration:none}.crumb a:hover{text-decoration:underline}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.03em;color:var(--pri);background:var(--prib);border-radius:6px;padding:2px 8px}.eyebrow:empty{display:none}h2{font-size:1.05rem;margin:0 0 .5rem}.mut{color:var(--mut);font-size:.9rem}
 a{color:var(--pri)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.08)}
+@media (prefers-color-scheme:dark){.card{box-shadow:none}}
 button,select,textarea{font:inherit;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;min-height:44px}
 button:hover{border-color:var(--pri)}button:disabled{cursor:default}
 textarea{width:100%;margin:8px 0;background:var(--bg);cursor:text;min-height:96px}
@@ -54,11 +57,13 @@ details>summary+*{margin-top:10px}
 .danger{color:var(--bad)}
 .sr{position:absolute;left:-9999px}
 </style></head><body><main>
-<a href="../index.html" class="mut">← Semua mata kuliah</a>
+<nav class="crumb" aria-label="Navigasi"><a href="../../index.html">Beranda</a><span>/</span><a href="../index.html">__SEMESTER__</a><span>/</span><span id="crumbNama"></span></nav>
+<span class="eyebrow" id="kodeMk"></span>
 <h1>__TITLE__</h1><div class="mut">Soal latihan tidak resmi · bukan bocoran soal ujian</div>
 <div id="app"></div><div id="live" class="sr" aria-live="polite"></div></main>
 <script>
-const D=__DATA__;const KEY='latihan_ut_'+D.kode;
+const D=__DATA__;
+(()=>{const h=document.querySelector('h1');const m=h.textContent.match(/^Latihan (\S+) (.+)$/);if(!m)return;h.textContent=m[2];const e=document.getElementById('kodeMk');if(e)e.textContent=m[1];const c=document.getElementById('crumbNama');if(c)c.textContent=m[2]})();const KEY='latihan_ut_'+D.kode;
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}};
 let S=load();
 const norm=()=>{S.salah=S.salah||{};S.benar=S.benar||{};S.log=S.log||{};S.sims=S.sims||[];S.hari=S.hari||[]};norm();
